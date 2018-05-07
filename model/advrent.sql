@@ -10,7 +10,7 @@ CREATE TABLE advr_product (
   reference varchar(32) NOT NULL,
   manufacturer_reference varchar(32) DEFAULT NULL,
   product_description varchar(1000) default null,
-  id_wharehouse integer not null default 1,
+  id_warehouse integer not null default 1,
   width decimal(20,6)  DEFAULT '0.000000',
   height decimal(20,6)  DEFAULT '0.000000',
   depth decimal(20,6)  DEFAULT '0.000000',
@@ -31,10 +31,10 @@ CREATE TABLE advr_history_wharehouse_movements (
 ) ;
 
 
-DROP TABLE IF EXISTS advr_wharehouse;
-CREATE TABLE advr_wharehouse (
-  id_wharehouse SERIAL PRIMARY KEY,
-  wharehouse_name varchar(100),
+DROP TABLE IF EXISTS advr_warehouse;
+CREATE TABLE advr_warehouse (
+  id_warehouse SERIAL PRIMARY KEY,
+  warehouse_name varchar(100),
   direction varchar(300),
   responsible varchar(150),
   cif varchar(50),
@@ -70,3 +70,12 @@ CREATE TABLE advr_manufacturer (
   cif varchar(50),
   tlf integer
 ) ;
+
+DROP TABLE IF EXISTS advr_attribute;
+CREATE TABLE advr_attribute (
+  id_attribute serial,
+  attribute_name varchar(50),
+  value varchar(150),
+  dateadd timestamp
+) ;
+

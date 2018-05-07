@@ -1,0 +1,20 @@
+{
+  "name": "advrent",
+  "version": "1.0.0",
+  "description": "advRent API Rest-Postgres ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Gonzalez Blanco",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "express-asyncify": "^1.0.0",
+    "express-router": "0.0.1",
+    "nodemon": "^1.17.4",
+    "standard": "^11.0.1"
+  }
+}
