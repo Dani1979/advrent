@@ -4,17 +4,23 @@
   "description": "advRent API Rest-Postgres ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=advRent:* nodemon server.js",
+    "lint": "standard"
   },
   "author": "Daniel Gonzalez Blanco",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "chalk": "^2.4.1",
     "debug": "^3.1.0",
+    "standard": "^11.0.1",
+    "nodemon": "^1.17.4"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
     "express": "^4.16.3",
     "express-asyncify": "^1.0.0",
     "express-router": "0.0.1",
-    "nodemon": "^1.17.4",
-    "standard": "^11.0.1"
+    "pg-promise": "^8.4.3"
   }
 }
