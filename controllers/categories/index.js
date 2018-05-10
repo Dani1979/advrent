@@ -1,34 +1,19 @@
 'use strict'
-//const db = require('../../lib/db')
+const db = require('../../lib/db')
+const util = require('../../lib/util')
 const debug = require('debug')('advRent:DB')
 const chalk = require('chalk')
-const Promise = require('bluebird')
-const conf = require('../../config')
-const initOptions = {
-    promiseLib: Promise,
-    schema:conf.schema
-};
-const pgp = require('pg-promise')(initOptions)
-const cn = {
-    host: conf.host,
-    port: conf.dbPort,
-    database: conf.database,
-    user: conf.user,
-    password: conf.pass
-};
-
-const  db = pgp(cn)
 
 
 function getCategory(req, res){
 
-  console.log(`${chalk.green('[advRent-getCategory]')} Params Vale: ${JSON.stringify(req.params)}`)
+const idCategory = req.params.idCategory
 
   db.any('select * from advrent.advr_category where id_category = ${idCategory}', {
-    idCategory:req.params.idCategory
+    idCategory:idCategory
   })
     .then(function(data) {
-      if(!data) return res.status(404).send({message:`La categoria no existe: ${idCategory}`})
+      if(util.isEmptyObject(data)) return res.status(404).send({message:`El idCategory = ${idCategory}, no existe`})
       console.log(`${chalk.green('[advRent-getCategory]')} Data vlae: ${data}`)
       res.status(200).send(data)
     })
