@@ -11,12 +11,14 @@ const app = asyncify(express())
 //only require the folder because de file name index.js
 const categories = require('./routes/categories');
 const suppliers = require('./routes/suppliers');
+const manufacturer = require('./routes/manufacturer');
 // with bodyparser librarie, parse json message
 app.use(bodyparser.urlencoded({ extended: false}));
 app.use(bodyparser.json());
 //API Routes
 app.use('/api',categories)
 app.use('/api',suppliers)
+app.use('/api',manufacturer)
 // Express Error Handler
 app.use((err, req, res, next) => {
   debug(`Error: ${err.message}`)

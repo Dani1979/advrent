@@ -5,41 +5,41 @@ const debug = require('debug')('advRent:DB')
 const chalk = require('chalk')
 
 
-function getSupplier(req, res){
+function getManufacturer(req, res){
 
-const idSupplier = req.params.id_supplier
+const idManufacturer = req.params.id_manufacturer
 
-  db.any('select * from advr_supplier where id_supplier = ${idSupplier}', {
-    idSupplier:idSupplier
+  db.any('select * from advr_manufacturer where id_manufacturer = ${idManufacturer}', {
+    idManufacturer:idManufacturer
   })
     .then(function(data) {
-      if(util.isEmptyObject(data)) return res.status(404).send({message:`El idSupplier = ${idSupplier}, no existe`})
+      if(util.isEmptyObject(data)) return res.status(404).send({message:`El idManufacturer = ${idManufacturer}, no existe`})
       res.status(200).send(data)
     })
     .catch(function(error) {
-      console.log(`${chalk.red('[advRent-getSupplier]')} Error al realizar la petición: ${error}`)
+      console.log(`${chalk.red('[advRent-getManufacturer]')} Error al realizar la petición: ${error}`)
       return res.status(500).send({message: `Error al realizar la petición: ${error}`})
     })
 }
 
-function getSuppliers(req, res){
+function getManufacturers(req, res){
 
-  db.any('select * from advr_supplier ')
+  db.any('select * from advr_manufacturer ')
     .then(function(data) {
-      if(util.isEmptyObject(data)) return res.status(404).send({message:`La tabla advr_supplier esta vacia`})
+      if(util.isEmptyObject(data)) return res.status(404).send({message:`La tabla advr_manufacturer esta vacia`})
       res.status(200).send(data)
     })
     .catch(function(error) {
-      console.log(`${chalk.red('[advRent-getSuppliers]')} Error al realizar la petición: ${error}`)
+      console.log(`${chalk.red('[advRent-getManufacturers]')} Error al realizar la petición: ${error}`)
       return res.status(500).send({message: `Error al realizar la petición: ${error}`})
     })
 }
 
 
-function postSupplier(req, res){
+function postManufacturer(req, res){
 
   const body = {
-    supplierName : req.body.supplier_name,
+    manufacturerName : req.body.manufacturer_name,
     direction : req.body.direction,
     responsible : req.body.responsible,
     cif : req.body.cif,
@@ -49,11 +49,11 @@ function postSupplier(req, res){
   db.tx(t => {
           // this.ctx = transaction config + state context;
           return t.batch([
-              t.none('INSERT INTO advrent.advr_supplier \
-                      ( supplier_name ,direction ,responsible ,cif ,tlf ) \
-                      VALUES(${supplierName}, ${direction},${responsible}, ${cif},${tlf} ) ',
+              t.none('INSERT INTO advrent.advr_manufacturer \
+                      ( manufacturer_name ,direction ,responsible ,cif ,tlf ) \
+                      VALUES(${manufacturerName}, ${direction},${responsible}, ${cif},${tlf} ) ',
                 {
-                  supplierName : body.supplierName,
+                  manufacturerName : body.manufacturerName,
                   direction : body.direction,
                   responsible : body.responsible,
                   cif : body.cif,
@@ -69,17 +69,17 @@ function postSupplier(req, res){
         res.status(200).send(data)
       })
       .catch(error => {
-        console.log(`${chalk.red('[advRent-postSupplier]')} Error al realizar la petición: ${error}`)
+        console.log(`${chalk.red('[advRent-postManufacturer]')} Error al realizar la petición: ${error}`)
         return res.status(500).send({message: `Error al realizar la petición: ${error}`})
       })
 }
 
 
-function putSupplier(req, res){
+function putManufacturer(req, res){
 
   const body = {
-    idSupplier:req.body.id_supplier,
-    supplierName : req.body.supplier_name,
+    idManufacturer:req.body.id_manufacturer,
+    manufacturerName : req.body.manufacturer_name,
     direction : req.body.direction,
     responsible : req.body.responsible,
     cif : req.body.cif,
@@ -88,16 +88,16 @@ function putSupplier(req, res){
   db.tx(t => {
           // this.ctx = transaction config + state context;
           return t.batch([
-              t.none('UPDATE advrent.advr_supplier \
-                      SET supplier_name=${supplierName}, \
+              t.none('UPDATE advrent.advr_manufacturer \
+                      SET manufacturer_name=${manufacturerName}, \
                           direction=${direction}, \
                           responsible=${responsible}, \
                           cif=${cif}, \
                           tlf=${tlf} \
-                      WHERE id_supplier= ${idSupplier} ',
+                      WHERE id_manufacturer= ${idManufacturer} ',
                 {
-                  idSupplier:body.idSupplier,
-                  supplierName:body.supplierName,
+                  idManufacturer:body.idManufacturer,
+                  manufacturerName:body.manufacturerName,
                   direction:body.direction,
                   responsible:body.responsible,
                   tlf:body.tlf,
@@ -113,22 +113,22 @@ function putSupplier(req, res){
         res.status(200).send(data)
       })
       .catch(error => {
-        console.log(`${chalk.red('[advRent-putSupplier]')} Error al realizar la petición: ${error}`)
+        console.log(`${chalk.red('[advRent-putManufacturer]')} Error al realizar la petición: ${error}`)
         return res.status(500).send({message: `Error al realizar la petición: ${error}`})
       })
 }
 
 
 
-function deleteSupplier(req, res){
+function deleteManufacturer(req, res){
 
   const body = {
-    idSupplier:req.body.id_supplier
+    idManufacturer:req.body.id_manufacturer
 }
 
-  db.result('DELETE from  advrent.advr_supplier  WHERE id_supplier= ${idSupplier} ',
+  db.result('DELETE from  advrent.advr_manufacturer  WHERE id_manufacturer= ${idManufacturer} ',
       {
-        idSupplier:body.idSupplier
+        idManufacturer:body.idManufacturer
       })
       .then(data => {
         if(util.isEmptyObject(data)) console.log('No se ha borrado ningun registro');
@@ -136,7 +136,7 @@ function deleteSupplier(req, res){
         res.status(200).send(data)
       })
       .catch(error => {
-        console.log(`${chalk.red('[advRent-deleteSupplier]')} Error al realizar la petición: ${error}`)
+        console.log(`${chalk.red('[advRent-deleteManufacturer]')} Error al realizar la petición: ${error}`)
         return res.status(500).send({message: `Error al realizar la petición: ${error}`})
       })
 }
@@ -147,9 +147,9 @@ function deleteSupplier(req, res){
 
 // export an object with de model function
 module.exports = {
-  getSupplier,
-  getSuppliers,
-  postSupplier,
-  putSupplier,
-  deleteSupplier
+  getManufacturer,
+  getManufacturers,
+  postManufacturer,
+  putManufacturer,
+  deleteManufacturer
 }
