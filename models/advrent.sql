@@ -44,7 +44,7 @@ CREATE TABLE advr_warehouse (
 DROP TABLE IF EXISTS advr_category;
 CREATE TABLE advr_category (
   id_category SERIAL PRIMARY KEY,
-  if_category_parent integer,
+  id_category_parent integer,
   category_name varchar(100),
   date_add timestamp
 ) ;
@@ -57,7 +57,7 @@ CREATE TABLE advr_supplier (
   direction varchar(300),
   responsible varchar(150),
   cif varchar(50),
-  tlf integer
+  tlf varchar(50)
 ) ;
 
 
