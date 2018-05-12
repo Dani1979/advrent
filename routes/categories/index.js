@@ -10,7 +10,7 @@ const categoryCtrl = require('../../controllers/categories');
 //const auth = require('../middelwares/auth');
 
 //end point to get category
-router.get('/category/:idCategory',categoryCtrl.getCategory)
+router.get('/category/:id_category',categoryCtrl.getCategory)
 //end point to get all category
 router.get('/categories',categoryCtrl.getCategories)
 //end point to update category

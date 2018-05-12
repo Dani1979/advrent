@@ -7,7 +7,7 @@ const chalk = require('chalk')
 
 function getCategory(req, res){
 
-const idCategory = req.params.idCategory
+const idCategory = req.params.id_category
 
   db.any('select * from advr_category where id_category = ${idCategory}', {
     idCategory:idCategory
