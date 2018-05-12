@@ -48,7 +48,7 @@ function postAttribute(req, res){
           // this.ctx = transaction config + state context;
           return t.batch([
               t.none('INSERT INTO advrent.advr_attribute \
-                      ( attribute_name,  value,date_add) \
+                      ( attribute_name,  value,dateadd) \
                       VALUES( ${attributeName},${value}, ${dateAdd} )',
                 {
                   value:body.value,

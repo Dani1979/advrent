@@ -14,6 +14,7 @@ const suppliers = require('./routes/suppliers');
 const manufacturer = require('./routes/manufacturer');
 const warehouse = require('./routes/warehouse');
 const attribute = require('./routes/attributes');
+const product = require('./routes/product');
 // with bodyparser librarie, parse json message
 app.use(bodyparser.urlencoded({ extended: false}));
 app.use(bodyparser.json());
@@ -23,6 +24,7 @@ app.use('/api',suppliers)
 app.use('/api',manufacturer)
 app.use('/api',warehouse)
 app.use('/api',attribute)
+app.use('/api',product)
 // Express Error Handler
 app.use((err, req, res, next) => {
   debug(`Error: ${err.message}`)

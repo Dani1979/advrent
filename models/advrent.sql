@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS advr_product;
-CREATE TABLE advr_product (
+DROP TABLE IF EXISTS advrent.advr_product;
+CREATE TABLE advrent.advr_product (
   id_product SERIAL PRIMARY KEY,
   id_supplier integer,
   id_manufacturer integer ,
@@ -9,7 +9,7 @@ CREATE TABLE advr_product (
   rent_price decimal(20,6)  DEFAULT '0.000000',
   reference varchar(32) NOT NULL,
   manufacturer_reference varchar(32) DEFAULT NULL,
-  product_description varchar(1000) default null,
+  product_name varchar(1000) default null,
   id_warehouse integer not null default 1,
   width decimal(20,6)  DEFAULT '0.000000',
   height decimal(20,6)  DEFAULT '0.000000',
@@ -18,7 +18,7 @@ CREATE TABLE advr_product (
   id_color integer,
   date_add timestamp NOT NULL,
   date_upd timestamp NOT NULL,
-  state integer  DEFAULT '1'
+  id_state integer  DEFAULT '1'
 ) ;
 
 
@@ -76,6 +76,21 @@ CREATE TABLE advr_attribute (
   id_attribute serial,
   attribute_name varchar(50),
   value varchar(150),
-  dateadd timestamp
+  date_add timestamp
 ) ;
 
+DROP TABLE IF EXISTS advrent.state_product;
+CREATE TABLE advrent.state_product (
+  id_state serial,
+  state_name varchar(50),
+  date_add timestamp
+) ;
+
+
+
+DROP TABLE IF EXISTS advrent.color;
+CREATE TABLE advrent.color (
+  id_color serial,
+  color_name varchar(50),
+  date_add timestamp
+) ;
