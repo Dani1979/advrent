@@ -12,6 +12,7 @@ const app = asyncify(express())
 const categories = require('./routes/categories');
 const suppliers = require('./routes/suppliers');
 const manufacturer = require('./routes/manufacturer');
+const warehouse = require('./routes/warehouse');
 // with bodyparser librarie, parse json message
 app.use(bodyparser.urlencoded({ extended: false}));
 app.use(bodyparser.json());
@@ -19,6 +20,7 @@ app.use(bodyparser.json());
 app.use('/api',categories)
 app.use('/api',suppliers)
 app.use('/api',manufacturer)
+app.use('/api',warehouse)
 // Express Error Handler
 app.use((err, req, res, next) => {
   debug(`Error: ${err.message}`)
